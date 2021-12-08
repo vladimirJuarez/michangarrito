@@ -1,0 +1,19 @@
+<form (submit)="onSubmit()" [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Product Name</mat-label>
+        <input formControlName="productName" matInput />
+        <mat-error>Field required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Model Year</mat-label>
+        <input formControlName="modelYear" matInput>
+        <mat-error>Field required</mat-error>
+    </mat-form-field>
+
+    <div>
+        <button mat-flat-button color="primary" [disabled]="form.invalid">
+            Save changes
+        </button>
+    </div>
+
+</form>

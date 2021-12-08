@@ -1,0 +1,36 @@
+<h1>Product List</h1>
+<button mat-flat-button color="primary" routerLink="/products/create">Create Product</button>
+<app-generic-list [glist]="products">
+    <ng-container content>
+        <table mat-table [dataSource]="products">
+            <ng-container matColumnDef="productId">
+                <th mat-header-cell *matHeaderCellDef>Id</th>
+                <td mat-cell *matCellDef="let product">{{product.productId}}</td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Product Name</th>
+                <td mat-cell *matCellDef="let product">{{product.productName}}</td>
+            </ng-container>
+            <ng-container matColumnDef="modelYear">
+                <th mat-header-cell *matHeaderCellDef>Model Year</th>
+                <td mat-cell *matCellDef="let product">{{product.modelYear}}</td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let product">
+                    <!--edit-->
+                    <a routerLink="/products/edit/{{product.productId}}" mat-flat-button color="primary">Edit</a>
+                    <!--delete-->
+                    <button mat-flat-button color="warn" [swal]="{title: 'Confirmación',
+                  text: '¿Want to delete this row?'
+                  , showCancelButton: true}" (confirm)="deleteProduct(product.productId)">Borrar</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToShow"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnsToShow"></tr>
+        </table>
+    </ng-container>
+
+
+</app-generic-list>

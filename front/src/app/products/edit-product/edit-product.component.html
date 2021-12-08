@@ -1,0 +1,5 @@
+<p>edit-product!</p>
+<app-product-form 
+*ngIf="model"
+[model]="model"
+(OnSubmit)="saveChanges($event)"></app-product-form>
