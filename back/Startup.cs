@@ -41,6 +41,15 @@ namespace michangarrito_back
 
             services.AddScoped<IProdcutRepository, ProductRepository>();
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins(Configuration.GetSection("fronted_ulr").Value)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                });
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -62,6 +71,8 @@ namespace michangarrito_back
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
